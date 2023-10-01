@@ -41,8 +41,8 @@ int main(int argc, char** argv) {
     cudaCheckError(cudaMalloc((void**)&d_A, nbytes));
     cudaCheckError(cudaMalloc((void**)&d_B, nbytes));
     cudaCheckError(cudaMalloc((void**)&d_C, nbytes));
-    cudaCheckError(cudaMemcpy(d_A, A, N, cudaMemcpyHostToDevice));
-    cudaCheckError(cudaMemcpy(d_B, B, N, cudaMemcpyHostToDevice));
+    cudaCheckError(cudaMemcpy(d_A, A, nbytes, cudaMemcpyHostToDevice));
+    cudaCheckError(cudaMemcpy(d_B, B, nbytes, cudaMemcpyHostToDevice));
 
     int threads_per_block = 256;
     int blocks_per_grid = ceil((double)N / threads_per_block);
