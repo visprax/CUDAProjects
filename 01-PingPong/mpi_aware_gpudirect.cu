@@ -78,12 +78,12 @@ int main(int argc, char** argv) {
         double start = MPI_Wtime();
         for(int j = 0; j < LOOP_COUNT; j++) {
             if(rank == 0) {
-                MPI_Send(A, N, MPI_DOUBLE, 1, tag0, MPI_COMM_WORLD);
-                MPI_Recv(A, N, MPI_DOUBLE, 1, tag1, MPI_COMM_WORLD, &status);
+                MPI_Send(d_A, N, MPI_DOUBLE, 1, tag0, MPI_COMM_WORLD);
+                MPI_Recv(d_A, N, MPI_DOUBLE, 1, tag1, MPI_COMM_WORLD, &status);
             }
             else if(rank == 1) {
-                MPI_Recv(A, N, MPI_DOUBLE, 0, tag0, MPI_COMM_WORLD, &status);
-                MPI_Send(A, N, MPI_DOUBLE, 0, tag1, MPI_COMM_WORLD);
+                MPI_Recv(d_A, N, MPI_DOUBLE, 0, tag0, MPI_COMM_WORLD, &status);
+                MPI_Send(d_A, N, MPI_DOUBLE, 0, tag1, MPI_COMM_WORLD);
             }
         }
         double elapsed_secs = MPI_Wtime() - start;
